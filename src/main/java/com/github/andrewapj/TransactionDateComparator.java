@@ -9,11 +9,9 @@ class TransactionDateComparator implements Comparator<Transaction> {
 
         if (o1.getDate().isAfter(o2.getDate())) {
             return 1;
-        }
-        else if (o1.getDate().isBefore(o2.getDate())) {
+        } else if (o1.getDate().isBefore(o2.getDate())) {
             return -1;
-        }
-        else {
+        } else {
             return 0;
         }
     }

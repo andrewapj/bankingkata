@@ -7,19 +7,19 @@ import org.junit.jupiter.api.Test;
 class AmountTest {
 
     @Test
-    void shouldDisplayPositiveAmount(){
+    void shouldDisplayPositiveAmount() {
         Amount amount = new Amount(100);
         assertEquals("+100", amount.toString());
     }
 
     @Test
-    void shouldDisplayNegativeAmount(){
+    void shouldDisplayNegativeAmount() {
         Amount amount = new Amount(-100);
         assertEquals("-100", amount.toString());
     }
 
     @Test
-    void shouldDisplayZeroAmount(){
+    void shouldDisplayZeroAmount() {
         Amount amount = new Amount(0);
         assertEquals("0", amount.toString());
     }

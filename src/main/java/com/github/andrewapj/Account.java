@@ -6,12 +6,10 @@ class Account {
 
     private final TransactionRepository repository;
     private final StatementPrinter printer;
-    private final Console console;
 
-    public Account(TransactionRepository repository, StatementPrinter printer, Console console) {
+    public Account(TransactionRepository repository, StatementPrinter printer) {
         this.repository = repository;
         this.printer = printer;
-        this.console = console;
     }
 
     void deposit(final int amount) {
@@ -22,9 +20,7 @@ class Account {
         repository.add(new Transaction(LocalDate.now(), new Amount(-amount)));
     }
 
-    void printStatement()
-    {
-        console.printToConsole(
-            printer.print(repository.getTransactions()));
+    void printStatement() {
+        printer.print(new Statement().build(repository.getTransactions()));
     }
 }

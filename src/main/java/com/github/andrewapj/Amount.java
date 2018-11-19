@@ -12,7 +12,7 @@ public final class Amount {
 
     @Override
     public String toString() {
-        if (amount > 0){
+        if (amount > 0) {
             return "+" + amount;
         }
         return Integer.toString(amount);

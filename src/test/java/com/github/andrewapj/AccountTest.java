@@ -1,6 +1,7 @@
 package com.github.andrewapj;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 import java.time.LocalDate;
@@ -22,14 +23,15 @@ class AccountTest {
 
     private Account account;
     private TransactionRepository repository;
-    private @Mock TransactionRepository mockRepository;
-    private @Mock StatementPrinter mockPrinter;
-    private @Mock Console mockConsole;
+    @Mock
+    private TransactionRepository mockRepository;
+    @Mock
+    private StatementPrinter mockPrinter;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         repository = new TransactionRepository();
-        account = new Account(repository, mockPrinter, mockConsole);
+        account = new Account(repository, mockPrinter);
     }
 
     @Test
@@ -39,15 +41,14 @@ class AccountTest {
     }
 
     @Test
-    void shouldWithdraw(){
+    void shouldWithdraw() {
         account.withdraw(100);
         assertEquals(-100, repository.getTransactions().get(0).getAmount().getValue());
     }
 
     @Test
-    void shouldPrintStatement()
-    {
-        Account accountWithMocks = new Account(mockRepository, mockPrinter, mockConsole);
+    void shouldPrintStatement() {
+        Account accountWithMocks = new Account(mockRepository, mockPrinter);
         List<Transaction> transactionsInRepository =
             Stream.of(
                 new Transaction(LocalDate.now(), new Amount(500)),
@@ -59,8 +60,7 @@ class AccountTest {
 
         accountWithMocks.printStatement();
 
-        verify(mockPrinter).print(transactionsInRepository);
-        verify(mockConsole, Mockito.times(1)).printToConsole(Mockito.any());
+        verify(mockPrinter).print(any(Statement.class));
     }
 
 }

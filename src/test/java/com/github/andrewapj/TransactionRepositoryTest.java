@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 class TransactionRepositoryTest {
 
     @Test
-    void shouldAddATransaction(){
+    void shouldAddATransaction() {
         TransactionRepository repository = new TransactionRepository();
 
-        repository.add( new Transaction(LocalDate.now(), new Amount(200)));
+        repository.add(new Transaction(LocalDate.now(), new Amount(200)));
 
-        Assertions.assertTrue( repository.getTransactions().size() > 0);
+        Assertions.assertTrue(repository.getTransactions().size() > 0);
     }
 }
