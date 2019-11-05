@@ -21,5 +21,4 @@ class TransactionDateComparatorTest {
 
         Assertions.assertEquals(transactions.get(0).getDate(), LocalDate.of(2014, Month.JANUARY, 1));
     }
-
 }
